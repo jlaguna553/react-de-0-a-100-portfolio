@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  FUNDAMENTO 2 — CSS: la presentación
+  ============================================================================
+  Este HTML es casi puro "esqueleto": toda la apariencia vive en estilos.css.
+  Ábrelos lado a lado. Cambia valores en el CSS, guarda, recarga (F5) y observa.
+-->
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos — CSS</title>
+
+    <!-- Hay 3 formas de aplicar CSS:
+         1. <link> a un archivo externo  ← ESTA. La única correcta en un proyecto.
+         2. <style> dentro del <head>    ← para demos rápidas.
+         3. style="..." en el elemento   ← "estilo en línea": gana en
+            especificidad y no se puede reutilizar. Úsalo solo para valores
+            calculados en tiempo de ejecución (en React lo verás como
+            style={{ width: `${porcentaje}%` }}). -->
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <div class="contenedor">
+      <header class="barra" style="margin-top: 16px">
+        <strong>CSS de 0 a 100</strong>
+        <nav>
+          <a href="#caja">Box model</a>
+          <a href="#flex">Flexbox</a>
+          <a href="#grid">Grid</a>
+          <a href="#position">Position</a>
+        </nav>
+      </header>
+
+      <h1 class="titulo-fluido">CSS: cascada, caja y layout</h1>
+      <p class="silencioso">
+        Achica y agranda la ventana del navegador mientras lees: casi todo en
+        esta página reacciona al tamaño.
+      </p>
+
+      <!-- ================================================================= -->
+      <h2 id="caja">1. Box model y unidades</h2>
+      <p>
+        Toda caja tiene <code>content</code>, <code>padding</code>,
+        <code>border</code> y <code>margin</code>. Inspecciona esta tarjeta con
+        DevTools (clic derecho → Inspeccionar → pestaña "Computed") y verás el
+        diagrama de las cuatro capas.
+      </p>
+      <div class="caja-demo">
+        Una caja con <code>padding: 12px</code>, <code>border: 1px</code> y
+        <code>border-radius: 8px</code>.
+      </div>
+
+      <!-- ================================================================= -->
+      <h2>2. Especificidad: quién gana cuando hay conflicto</h2>
+      <p class="demo-especificidad">
+        Esta tiene <code>class="demo-especificidad"</code> y sale
+        <strong>azul</strong>, porque la regla <code>p.demo-especificidad</code>
+        (etiqueta + clase) le gana a <code>.demo-especificidad</code> sola.
+      </p>
+      <p id="demo-id" class="demo-especificidad">
+        Esta además tiene un <code>id</code>, y el id gana a todo lo anterior.
+      </p>
+
+      <h3>Combinadores y pseudo-clases</h3>
+      <ul class="lista-demo">
+        <li>Primer hijo (coloreado con <code>:first-child</code>)</li>
+        <li>Segundo hijo (fondo por <code>:nth-child(even)</code>)</li>
+        <li>
+          Tercer hijo, con hijos propios:
+          <ul>
+            <li>Nieto: le aplica <code>.lista-demo li li</code>, no <code>&gt; li</code></li>
+          </ul>
+        </li>
+        <li>Cuarto hijo (par de nuevo)</li>
+      </ul>
+      <p class="tip">Este párrafo lleva un emoji inyectado con <code>::before</code>.</p>
+
+      <!-- ================================================================= -->
+      <h2>3. Display: block, inline, inline-block</h2>
+      <p>
+        <span class="inline-demo">Soy inline: mi width de 300px se ignora.</span>
+        <span class="inline-block-demo">Soy inline-block: mi width sí manda.</span>
+      </p>
+
+      <!-- ================================================================= -->
+      <h2 id="flex">4. Flexbox — una dimensión</h2>
+      <p>Tres cajas repartiéndose el ancho con <code>flex: 1</code> y <code>gap</code>:</p>
+      <div class="fila-flex">
+        <div class="caja-demo">Uno</div>
+        <div class="caja-demo">Dos</div>
+        <div class="caja-demo">Tres</div>
+      </div>
+
+      <h3>El centrado perfecto</h3>
+      <div class="centrado-perfecto">
+        <button class="boton">Centrado vertical y horizontal</button>
+      </div>
+
+      <!-- ================================================================= -->
+      <h2 id="grid">5. CSS Grid — dos dimensiones</h2>
+
+      <h3>Rejilla fija de 3 columnas</h3>
+      <div class="grid-basico">
+        <div class="caja-demo">1</div>
+        <div class="caja-demo">2</div>
+        <div class="caja-demo">3</div>
+        <div class="caja-demo">4</div>
+        <div class="caja-demo">5</div>
+        <div class="caja-demo">6</div>
+      </div>
+
+      <h3>Rejilla responsive sin media queries</h3>
+      <p class="silencioso">
+        <code>repeat(auto-fit, minmax(200px, 1fr))</code> — cambia el ancho de la
+        ventana y cuenta las columnas.
+      </p>
+      <div class="grid-responsive">
+        <div class="caja-demo">Tarjeta A</div>
+        <div class="caja-demo">Tarjeta B</div>
+        <div class="caja-demo">Tarjeta C</div>
+        <div class="caja-demo">Tarjeta D</div>
+        <div class="caja-demo">Tarjeta E</div>
+      </div>
+
+      <h3>Layout de página con áreas nombradas</h3>
+      <div class="grid-layout">
+        <div class="caja-demo cabecera">cabecera</div>
+        <div class="caja-demo menu">menu</div>
+        <div class="caja-demo contenido">contenido</div>
+        <div class="caja-demo pie">pie</div>
+      </div>
+
+      <!-- ================================================================= -->
+      <h2 id="position">6. Position</h2>
+      <div class="caja-demo pos-relativa">
+        Esta caja es <code>position: relative</code>, así que el badge
+        <code>absolute</code> de su esquina se posiciona respecto a ELLA y no
+        respecto a la página.
+        <span class="badge">9</span>
+      </div>
+
+      <p class="pegajoso">
+        Soy <code>position: sticky</code>. Haz scroll: me pego arriba.
+      </p>
+      <p>
+        Texto de relleno para que haya scroll. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
+        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur.
+      </p>
+
+      <!-- ================================================================= -->
+      <h2>7. Estados: hover, focus, disabled</h2>
+      <p>
+        Pasa el ratón por encima, y luego navega con la tecla <kbd>Tab</kbd> para
+        ver el anillo de foco (<code>:focus-visible</code>).
+      </p>
+      <p>
+        <button class="boton">Primario</button>
+        <button class="boton boton--secundario">Secundario</button>
+        <button class="boton" disabled>Deshabilitado</button>
+      </p>
+
+      <!-- ================================================================= -->
+      <h2>8. Formulario estilizado</h2>
+      <form onsubmit="event.preventDefault(); alert('En 03 y 04 esto lo haremos con JavaScript de verdad')">
+        <div class="campo">
+          <label for="titulo">Título</label>
+          <input id="titulo" type="text" placeholder="Ej. Repasar flexbox" required />
+        </div>
+        <div class="campo">
+          <label for="email">Email (escribe algo inválido para ver el borde rojo)</label>
+          <input id="email" type="email" placeholder="tu@correo.com" />
+        </div>
+        <div class="campo">
+          <label for="cat">Categoría</label>
+          <select id="cat">
+            <option>Trabajo</option>
+            <option>Personal</option>
+          </select>
+        </div>
+        <button class="boton" type="submit">Enviar</button>
+      </form>
+
+      <!-- ================================================================= -->
+      <h2>9. Responsive: mobile-first</h2>
+      <p class="silencioso">
+        Una columna en móvil, dos desde 640px, cuatro desde 960px.
+      </p>
+      <div class="responsive-demo">
+        <div class="tarjeta">Uno</div>
+        <div class="tarjeta">Dos</div>
+        <div class="tarjeta">Tres</div>
+        <div class="tarjeta">Cuatro</div>
+      </div>
+
+      <!-- ================================================================= -->
+      <h2>10. Variables y tema oscuro</h2>
+      <p>
+        Todos los colores de esta página salen de variables declaradas en
+        <code>:root</code>. Cambia el tema de tu sistema operativo a oscuro y
+        recarga: la página entera cambia porque el bloque
+        <code>@media (prefers-color-scheme: dark)</code> redefine esas mismas
+        variables. Es exactamente la técnica que usa
+        <code>frontend/src/index.css</code> en el proyecto React.
+      </p>
+
+      <footer>
+        <p class="silencioso">
+          Siguiente: <a href="../03-js-lenguaje/index.html">03 — JavaScript, el lenguaje</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

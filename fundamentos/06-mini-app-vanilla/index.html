@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos — Mini TaskFlow en JavaScript puro</title>
+    <link rel="stylesheet" href="../02-css/estilos.css" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <header class="barra" style="margin-top: 16px">
+        <strong>Mini TaskFlow — sin frameworks</strong>
+        <span class="silencioso" id="resumen">—</span>
+      </header>
+
+      <h1>Todo junto: HTML + CSS + JavaScript</h1>
+      <p>
+        Esta es la misma aplicación que vas a construir con React, escrita con
+        las herramientas de los cinco ejemplos anteriores y nada más. Úsala,
+        léela entera (<code>app.js</code> son ~150 líneas) y quédate con la
+        sensación: <strong>cada cambio de datos exige que tú vayas a repintar
+        el DOM a mano</strong>. Ese es el problema que React elimina.
+      </p>
+
+      <!-- FORMULARIO ------------------------------------------------------- -->
+      <form class="tarjeta" id="form-tarea">
+        <div class="fila-form">
+          <div class="campo" style="flex: 1; margin-bottom: 0">
+            <label for="titulo">Nueva tarea</label>
+            <input id="titulo" name="titulo" type="text" placeholder="¿Qué hay que hacer?" required />
+          </div>
+          <div class="campo" style="margin-bottom: 0">
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria">
+              <option value="trabajo">Trabajo</option>
+              <option value="personal">Personal</option>
+              <option value="estudio">Estudio</option>
+            </select>
+          </div>
+          <button class="boton" type="submit">Agregar</button>
+        </div>
+        <p class="silencioso" id="error-form" role="alert"></p>
+      </form>
+
+      <!-- FILTROS ---------------------------------------------------------- -->
+      <div class="filtros" id="filtros">
+        <!-- data-filtro se lee desde JS: un solo listener para los tres. -->
+        <button class="boton boton--secundario activo" data-filtro="todas">Todas</button>
+        <button class="boton boton--secundario" data-filtro="pendientes">Pendientes</button>
+        <button class="boton boton--secundario" data-filtro="completadas">Completadas</button>
+        <input id="buscar" type="search" placeholder="Buscar…" />
+      </div>
+
+      <!-- LISTA ------------------------------------------------------------ -->
+      <ul class="lista-tareas" id="lista"></ul>
+      <p class="silencioso" id="vacio" hidden>No hay tareas que coincidan.</p>
+
+      <footer>
+        <p>
+          <strong>Ahora compara.</strong> Abre
+          <code>frontend/src/paginas/Tareas.jsx</code> y
+          <code>frontend/src/componentes/TaskCard.jsx</code>: hacen lo mismo que
+          esta página, pero sin una sola llamada a
+          <code>createElement</code>, <code>appendChild</code> o
+          <code>innerHTML</code>. Tú cambias el estado; React repinta.
+        </p>
+        <p class="silencioso">
+          Volver al principio: <a href="../01-html/index.html">01 — HTML</a> ·
+          El índice de todo está en <code>fundamentos/README.md</code> y en la
+          Parte I de <code>GUIA-REACT-0-A-100.md</code>.
+        </p>
+      </footer>
+    </div>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

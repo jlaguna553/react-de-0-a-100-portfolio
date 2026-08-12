@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos — Asincronía y fetch</title>
+    <link rel="stylesheet" href="../02-css/estilos.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Asincronía, promesas y <code>fetch</code></h1>
+      <p class="silencioso">
+        Consola abierta (F12) mientras usas los botones. El código está en
+        <code>async.js</code>.
+      </p>
+
+      <div class="tarjeta">
+        <strong>Para la última sección necesitas el backend corriendo:</strong>
+        <pre>cd backend
+npm install
+npm run dev</pre>
+        Si no lo tienes levantado, el ejemplo te mostrará un error controlado —
+        que también es parte de la lección.
+      </div>
+
+      <h2>1. Síncrono vs asíncrono</h2>
+      <div class="tarjeta">
+        <button class="boton" id="btn-orden">Ver el orden de ejecución</button>
+        <p class="silencioso">El resultado sale en la consola.</p>
+      </div>
+
+      <h2>2. Promesas y async/await</h2>
+      <div class="tarjeta">
+        <button class="boton" id="btn-promesa">Esperar 1.5s (promesa)</button>
+        <button class="boton" id="btn-secuencial">3 esperas en secuencia</button>
+        <button class="boton" id="btn-paralelo">3 esperas en paralelo</button>
+        <p id="estado-promesa">—</p>
+      </div>
+
+      <h2>3. fetch: pedir datos a un servidor</h2>
+      <div class="tarjeta">
+        <button class="boton" id="btn-cargar">Cargar tareas del backend</button>
+        <button class="boton boton--secundario" id="btn-crear">Crear una tarea (POST)</button>
+        <button class="boton boton--secundario" id="btn-error">Provocar un error 404</button>
+
+        <!-- Los TRES estados que toda petición tiene, y que en React manejarás
+             con useState: cargando, error, datos. -->
+        <p id="cargando" style="display: none">⏳ Cargando…</p>
+        <p id="error" style="display: none; color: var(--danger)"></p>
+        <ul id="tareas"></ul>
+      </div>
+
+      <footer>
+        <p class="silencioso">
+          Siguiente:
+          <a href="../06-mini-app-vanilla/index.html">06 — Mini app en JS puro</a>
+          (todo junto, y el puente directo hacia React)
+        </p>
+      </footer>
+    </div>
+
+    <script src="async.js" defer></script>
+  </body>
+</html>

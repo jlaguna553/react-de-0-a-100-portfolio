@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  FUNDAMENTO 1 — HTML: la estructura del documento
+  ============================================================================
+  Abre este archivo directamente en el navegador (doble clic) y ábrelo también
+  en el editor. Todo lo que ves en pantalla sale de las etiquetas de abajo.
+  NO hay CSS aquí a propósito: así ves el HTML "desnudo", con los estilos por
+  defecto del navegador. En 02-css le damos apariencia.
+
+  Truco: en el navegador, clic derecho > "Inspeccionar" sobre cualquier cosa
+  para ver a qué etiqueta corresponde.
+-->
+<html lang="es">
+  <head>
+    <!-- charset: cómo interpretar los bytes del archivo. Sin esto, los
+         acentos y emojis se ven como símbolos raros. SIEMPRE va primero. -->
+    <meta charset="UTF-8" />
+
+    <!-- viewport: le dice al móvil "usa el ancho real de la pantalla, no
+         finjas ser un escritorio de 980px". Sin esto NO hay diseño responsive. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- description: lo que Google muestra debajo del título en resultados. -->
+    <meta name="description" content="Ejemplo comentado de HTML semántico" />
+
+    <!-- title: el texto de la pestaña del navegador. -->
+    <title>Fundamentos — HTML</title>
+  </head>
+
+  <body>
+    <!-- ======================================================================
+         1. ANATOMÍA DE UN ELEMENTO
+         <etiqueta atributo="valor">contenido</etiqueta>
+         Algunos elementos no tienen contenido y se cierran solos: <img>, <br>,
+         <input>, <meta>. Se llaman "void elements".
+         ====================================================================== -->
+
+    <!-- ======================================================================
+         2. SEMÁNTICA: usa la etiqueta que DESCRIBE el contenido
+         Un <div> no significa nada. Un <header> significa "encabezado".
+         Importa por 3 razones reales:
+           a) Accesibilidad: un lector de pantalla puede saltar directo al <main>.
+           b) SEO: Google entiende la jerarquía de tu contenido.
+           c) Tú mismo, leyendo el código en 6 meses.
+         Regla: usa <div> SOLO cuando no exista una etiqueta con significado.
+         ====================================================================== -->
+
+    <header>
+      <h1>Fundamentos de HTML</h1>
+      <p>Una página sin una sola línea de CSS.</p>
+
+      <!-- <nav>: bloque de navegación principal. -->
+      <nav>
+        <!-- Enlaces internos: href="#id" salta al elemento con ese id. -->
+        <a href="#texto">Texto</a> |
+        <a href="#listas">Listas</a> |
+        <a href="#media">Imágenes y enlaces</a> |
+        <a href="#tabla">Tablas</a> |
+        <a href="#formulario">Formularios</a>
+      </nav>
+    </header>
+
+    <hr />
+
+    <!-- <main>: el contenido principal y único de la página. Solo puede haber
+         UNO por documento, y no debe ir dentro de header/footer/nav. -->
+    <main>
+      <!-- ====================================================================
+           3. TEXTO Y JERARQUÍA
+           ==================================================================== -->
+      <section id="texto">
+        <h2>1. Texto y jerarquía</h2>
+
+        <!-- Los headings van de h1 a h6 y forman un ÍNDICE del documento.
+             Nunca los saltes (de h2 a h4) solo porque "se ve más pequeño":
+             el tamaño se controla con CSS, la jerarquía con la etiqueta. -->
+        <h3>Un subtítulo (h3), hijo lógico del h2 de arriba</h3>
+
+        <p>
+          Un párrafo. El navegador colapsa      todos     los espacios
+          y saltos de línea consecutivos en uno solo, así que el formato del
+          código fuente no afecta al resultado.
+        </p>
+
+        <p>
+          Dentro de un párrafo puedes marcar
+          <strong>importancia (strong)</strong>,
+          <em>énfasis (em)</em>,
+          <code>código en línea (code)</code>,
+          <small>letra pequeña (small)</small> y
+          <mark>texto resaltado (mark)</mark>.
+        </p>
+
+        <p>
+          <!-- <b> e <i> existen, pero solo cambian la apariencia.
+               <strong> y <em> además comunican SIGNIFICADO (un lector de
+               pantalla los entona distinto). Prefiere siempre estos últimos. -->
+          Un salto de línea forzado se escribe con br:<br />
+          esta frase quedó en la segunda línea.
+        </p>
+
+        <blockquote cite="https://developer.mozilla.org">
+          Una cita larga va en blockquote. El navegador la indenta por defecto.
+        </blockquote>
+
+        <pre>
+Un bloque &lt;pre&gt; SÍ respeta
+   los espacios
+       y los saltos de línea.
+Por eso se usa para mostrar código.</pre
+        >
+      </section>
+
+      <!-- ====================================================================
+           4. LISTAS
+           ==================================================================== -->
+      <section id="listas">
+        <h2>2. Listas</h2>
+
+        <h3>Lista no ordenada (ul)</h3>
+        <ul>
+          <li>Un elemento</li>
+          <li>Otro elemento</li>
+          <li>
+            Las listas se pueden anidar:
+            <ul>
+              <li>Hijo A</li>
+              <li>Hijo B</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Lista ordenada (ol)</h3>
+        <ol>
+          <li>Primer paso</li>
+          <li>Segundo paso</li>
+          <li>Tercer paso</li>
+        </ol>
+
+        <h3>Lista de definiciones (dl)</h3>
+        <dl>
+          <dt>HTML</dt>
+          <dd>Define la estructura y el significado del contenido.</dd>
+          <dt>CSS</dt>
+          <dd>Define la presentación: colores, tamaños, posiciones.</dd>
+          <dt>JavaScript</dt>
+          <dd>Define el comportamiento: qué pasa cuando el usuario interactúa.</dd>
+        </dl>
+
+        <p>
+          <strong>Por qué esto importa para React:</strong> cuando en React
+          escribas <code>{tareas.map(...)}</code> vas a estar generando
+          exactamente estos <code>&lt;li&gt;</code> desde un array de datos.
+        </p>
+      </section>
+
+      <!-- ====================================================================
+           5. ENLACES E IMÁGENES
+           ==================================================================== -->
+      <section id="media">
+        <h2>3. Enlaces e imágenes</h2>
+
+        <ul>
+          <li><a href="https://developer.mozilla.org/es/">Enlace externo (MDN)</a></li>
+          <li>
+            <a href="https://developer.mozilla.org/es/" target="_blank" rel="noopener noreferrer">
+              Enlace que abre en pestaña nueva
+            </a>
+            — <code>rel="noopener"</code> evita que la página destino pueda
+            manipular la tuya. Ponlo siempre que uses <code>target="_blank"</code>.
+          </li>
+          <li><a href="../02-css/index.html">Enlace relativo (al siguiente ejemplo)</a></li>
+          <li><a href="#texto">Enlace a un ancla de esta misma página</a></li>
+          <li><a href="mailto:alguien@ejemplo.com">Enlace de correo</a></li>
+        </ul>
+
+        <!-- <figure> agrupa un contenido visual con su leyenda. -->
+        <figure>
+          <!-- El atributo alt NO es opcional: es lo que "ve" una persona ciega
+               y lo que se muestra si la imagen no carga (justo lo que pasa aquí,
+               porque este archivo no existe). Descríbela; no escribas
+               "imagen de..." — el lector de pantalla ya dice que es una imagen. -->
+          <img
+            src="no-existe.png"
+            alt="Diagrama de las tres capas de la web: HTML, CSS y JavaScript"
+            width="320"
+            height="180"
+          />
+          <figcaption>
+            Esta imagen no carga a propósito: así ves para qué sirve
+            <code>alt</code>. Los atributos <code>width</code> y
+            <code>height</code> reservan el espacio y evitan que la página
+            "salte" mientras la imagen carga.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ====================================================================
+           6. TABLAS — solo para datos tabulares, NUNCA para maquetar
+           ==================================================================== -->
+      <section id="tabla">
+        <h2>4. Tablas</h2>
+        <table border="1">
+          <caption>
+            Las tres capas de la web
+          </caption>
+          <thead>
+            <tr>
+              <!-- <th> = celda de encabezado. scope dice si encabeza la
+                   columna o la fila; los lectores de pantalla lo usan. -->
+              <th scope="col">Tecnología</th>
+              <th scope="col">Responsabilidad</th>
+              <th scope="col">Analogía</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">HTML</th>
+              <td>Estructura</td>
+              <td>Los huesos</td>
+            </tr>
+            <tr>
+              <th scope="row">CSS</th>
+              <td>Presentación</td>
+              <td>La piel y la ropa</td>
+            </tr>
+            <tr>
+              <th scope="row">JavaScript</th>
+              <td>Comportamiento</td>
+              <td>Los músculos</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ====================================================================
+           7. FORMULARIOS — la parte de HTML que más vas a usar en React
+           ==================================================================== -->
+      <section id="formulario">
+        <h2>5. Formularios</h2>
+
+        <form action="#" method="get">
+          <fieldset>
+            <legend>Crear una tarea</legend>
+
+            <p>
+              <!-- REGLA DE ORO: cada input necesita un <label> asociado.
+                   El for del label debe coincidir con el id del input.
+                   Beneficio inmediato: al hacer clic en el texto se enfoca el
+                   campo. Beneficio real: sin label, un lector de pantalla
+                   anuncia "campo de texto" sin decir de qué. -->
+              <label for="titulo">Título</label><br />
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Ej. Estudiar CSS Grid"
+                required
+                maxlength="80"
+              />
+              <!-- placeholder NO sustituye al label: desaparece al escribir. -->
+            </p>
+
+            <p>
+              <label for="descripcion">Descripción</label><br />
+              <textarea id="descripcion" name="descripcion" rows="3" cols="40"></textarea>
+            </p>
+
+            <p>
+              <label for="categoria">Categoría</label><br />
+              <select id="categoria" name="categoria">
+                <option value="trabajo">Trabajo</option>
+                <option value="personal" selected>Personal</option>
+                <option value="estudio">Estudio</option>
+              </select>
+            </p>
+
+            <fieldset>
+              <legend>Prioridad (radio: elige UNA)</legend>
+              <!-- Los radio con el MISMO name forman un grupo excluyente. -->
+              <label><input type="radio" name="prioridad" value="baja" /> Baja</label>
+              <label><input type="radio" name="prioridad" value="normal" checked /> Normal</label>
+              <label><input type="radio" name="prioridad" value="alta" /> Alta</label>
+            </fieldset>
+
+            <p>
+              <label>
+                <input type="checkbox" name="completada" />
+                Marcar como completada (checkbox: sí/no independiente)
+              </label>
+            </p>
+
+            <p>
+              <label for="vence">Fecha límite</label><br />
+              <input type="date" id="vence" name="vence" />
+            </p>
+
+            <p>
+              <label for="email">Email de recordatorio</label><br />
+              <!-- type="email" + required = validación GRATIS del navegador,
+                   sin una línea de JavaScript. Otros tipos útiles:
+                   number, tel, url, password, color, range, time, file. -->
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" />
+            </p>
+
+            <p>
+              <!-- type="submit" envía el formulario (recarga la página).
+                   type="button" no hace nada por sí solo: es para JavaScript.
+                   OJO: dentro de un <form>, un <button> sin type ES submit. -->
+              <button type="submit">Guardar tarea</button>
+              <button type="reset">Limpiar</button>
+            </p>
+          </fieldset>
+        </form>
+
+        <p>
+          Pulsa "Guardar tarea" con el título vacío: el navegador te lo impide
+          él solo, gracias a <code>required</code>. Ahora llénalo y envíalo:
+          fíjate cómo los datos aparecen en la URL como
+          <code>?titulo=...&amp;categoria=...</code> — eso es un
+          <em>query string</em>, y es lo que hace <code>method="get"</code>.
+        </p>
+      </section>
+
+      <!-- ====================================================================
+           8. ELEMENTOS INTERACTIVOS SIN JAVASCRIPT
+           ==================================================================== -->
+      <section>
+        <h2>6. Interactividad nativa (cero JavaScript)</h2>
+
+        <details>
+          <summary>Haz clic para desplegar (details + summary)</summary>
+          <p>
+            Un acordeón funcionando sin JavaScript. Antes de instalar una
+            librería para algo, revisa si HTML ya lo trae.
+          </p>
+        </details>
+
+        <p>
+          <label for="progreso">Progreso del curso</label>
+          <progress id="progreso" value="30" max="100">30%</progress>
+        </p>
+      </section>
+
+      <!-- ====================================================================
+           9. ERRORES COMUNES
+           ==================================================================== -->
+      <section>
+        <h2>7. Errores comunes de principiante</h2>
+        <ol>
+          <li><strong>"Divitis"</strong>: envolver todo en <code>&lt;div&gt;</code> cuando existía <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;button&gt;</code>...</li>
+          <li><strong>Usar <code>&lt;div onclick&gt;</code> en vez de <code>&lt;button&gt;</code></strong>: el div no recibe foco con Tab ni responde a Enter. Un botón sí.</li>
+          <li><strong>Olvidar <code>alt</code></strong> en las imágenes.</li>
+          <li><strong>Inputs sin <code>&lt;label&gt;</code></strong>.</li>
+          <li><strong>Saltarse niveles de heading</strong> por razones visuales.</li>
+          <li><strong>Anidar mal</strong>: <code>&lt;p&gt;&lt;div&gt;&lt;/div&gt;&lt;/p&gt;</code> es inválido (un <code>p</code> solo admite contenido en línea).</li>
+          <li><strong>Repetir un <code>id</code></strong>: los <code>id</code> son únicos en toda la página; para agrupar usa <code>class</code>.</li>
+        </ol>
+      </section>
+    </main>
+
+    <hr />
+
+    <footer>
+      <p>
+        <small>
+          Siguiente: <a href="../02-css/index.html">02 — CSS</a>. Ahí tomamos
+          una estructura como esta y le damos apariencia.
+        </small>
+      </p>
+    </footer>
+  </body>
+</html>

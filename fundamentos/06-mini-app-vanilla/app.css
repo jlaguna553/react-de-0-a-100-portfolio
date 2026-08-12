@@ -1,0 +1,106 @@
+/* Estilos propios de la mini app. Hereda variables y utilidades de
+   ../02-css/estilos.css (los dos <link> se acumulan; el segundo puede
+   sobrescribir al primero si hay conflicto). */
+
+.fila-form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0 12px;
+}
+
+.filtros input[type='search'] {
+  font: inherit;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  margin-left: auto; /* empuja la búsqueda al extremo derecho */
+}
+
+.boton.activo {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* lista sin viñetas ni sangría */
+.lista-tareas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+}
+
+/* Selector de atributo: estiliza según el valor de data-prioridad */
+.tarea[data-categoria='trabajo'] {
+  border-left-color: var(--primary);
+}
+.tarea[data-categoria='personal'] {
+  border-left-color: var(--success);
+}
+.tarea[data-categoria='estudio'] {
+  border-left-color: #d97706;
+}
+
+.tarea.completada .tarea__titulo {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.tarea__cuerpo {
+  flex: 1; /* ocupa todo el espacio sobrante y empuja el botón al final */
+  min-width: 0; /* permite que el texto largo se recorte en vez de desbordar */
+}
+
+.tarea__titulo {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tarea__meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tarea__borrar {
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius);
+}
+
+.tarea__borrar:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+#error-form:not(:empty) {
+  color: var(--danger);
+  margin-top: 8px;
+}

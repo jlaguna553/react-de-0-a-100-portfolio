@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos — JavaScript (el lenguaje)</title>
+    <link rel="stylesheet" href="../02-css/estilos.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>JavaScript: el lenguaje</h1>
+
+      <div class="tarjeta">
+        <p>
+          <strong>Este ejemplo no dibuja nada en pantalla.</strong> Todo su
+          resultado sale por la <strong>consola</strong>:
+        </p>
+        <ol>
+          <li>Pulsa <kbd>F12</kbd> (o clic derecho → Inspeccionar).</li>
+          <li>Ve a la pestaña <strong>Console</strong>.</li>
+          <li>Recarga la página.</li>
+        </ol>
+        <p class="silencioso">
+          Lee <code>lenguaje.js</code> de arriba abajo mientras miras la consola.
+          Es el archivo importante; este HTML solo lo carga.
+        </p>
+      </div>
+
+      <p>
+        La consola no es solo para leer: escribe ahí <code>2 + 2</code> y pulsa
+        Enter. Es un laboratorio de JavaScript siempre disponible, y vas a vivir
+        en él.
+      </p>
+
+      <footer>
+        <p class="silencioso">
+          Siguiente: <a href="../04-js-dom/index.html">04 — El DOM y los eventos</a>
+        </p>
+      </footer>
+    </div>
+
+    <!-- defer: descarga el script en paralelo y lo ejecuta cuando el HTML ya
+         está completo. Sin defer (o sin poner el script al final del body), el
+         JS corre antes de que exista el DOM y document.querySelector devuelve
+         null. Es el error de principiante número uno. -->
+    <script src="lenguaje.js" defer></script>
+  </body>
+</html>

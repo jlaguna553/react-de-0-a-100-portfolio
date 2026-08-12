@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos — El DOM y los eventos</title>
+    <link rel="stylesheet" href="../02-css/estilos.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>El DOM y los eventos</h1>
+      <p class="silencioso">
+        Aquí JavaScript deja de imprimir en la consola y empieza a
+        <strong>tocar la página</strong>. Ten la consola abierta igualmente.
+        Todo el código está en <code>dom.js</code>.
+      </p>
+
+      <!-- ==================================================================
+           1. SELECCIONAR Y MODIFICAR
+           ================================================================== -->
+      <h2>1. Seleccionar y modificar elementos</h2>
+      <div class="tarjeta">
+        <p id="saludo">Este texto lo va a cambiar JavaScript al cargar.</p>
+        <p>
+          Elementos con <code>class="dato"</code>:
+          <span class="dato">uno</span>, <span class="dato">dos</span>,
+          <span class="dato">tres</span>
+        </p>
+        <button class="boton" id="btn-pintar">Pintar los .dato</button>
+      </div>
+
+      <!-- ==================================================================
+           2. EVENTOS
+           ================================================================== -->
+      <h2>2. Eventos</h2>
+      <div class="tarjeta">
+        <p>
+          Clics: <strong id="cuenta">0</strong>
+          <!-- data-* : atributos propios para guardar datos en el HTML.
+               Se leen desde JS con elemento.dataset.paso -->
+          <button class="boton" id="btn-mas" data-paso="1">+1</button>
+          <button class="boton boton--secundario" id="btn-menos" data-paso="-1">−1</button>
+        </p>
+        <p class="campo">
+          <label for="entrada">Escribe algo (evento <code>input</code>)</label>
+          <input id="entrada" type="text" placeholder="escribe aquí..." />
+        </p>
+        <p>Vista previa en vivo: <strong id="eco">—</strong></p>
+      </div>
+
+      <!-- ==================================================================
+           3. CREAR ELEMENTOS Y DELEGACIÓN
+           ================================================================== -->
+      <h2>3. Crear elementos y delegación de eventos</h2>
+      <div class="tarjeta">
+        <button class="boton" id="btn-agregar">Agregar elemento a la lista</button>
+        <!-- Un único listener en el <ul> atiende a todos los <li>, incluso a
+             los que todavía no existen. Eso es delegación. -->
+        <ul id="lista"></ul>
+        <p class="silencioso">Haz clic en cualquier elemento de la lista para borrarlo.</p>
+      </div>
+
+      <!-- ==================================================================
+           4. FORMULARIOS
+           ================================================================== -->
+      <h2>4. Formularios con JavaScript</h2>
+      <form class="tarjeta" id="formulario">
+        <div class="campo">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" required />
+        </div>
+        <div class="campo">
+          <label for="color">Color favorito</label>
+          <select id="color" name="color">
+            <option value="azul">Azul</option>
+            <option value="verde">Verde</option>
+            <option value="rojo">Rojo</option>
+          </select>
+        </div>
+        <button class="boton" type="submit">Enviar sin recargar</button>
+        <p id="resultado-form" class="silencioso"></p>
+      </form>
+
+      <!-- ==================================================================
+           5. CLASES Y ESTILOS
+           ================================================================== -->
+      <h2>5. Cambiar clases y estilos</h2>
+      <div class="tarjeta">
+        <button class="boton" id="btn-tema">Alternar tema oscuro</button>
+        <button class="boton boton--secundario" id="btn-oculta">Mostrar / ocultar caja</button>
+        <div class="caja-demo" id="caja-toggle" style="margin-top: 12px">
+          Una caja que aparece y desaparece.
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           6. localStorage
+           ================================================================== -->
+      <h2>6. Guardar datos en el navegador</h2>
+      <div class="tarjeta">
+        <div class="campo">
+          <label for="nota">Nota (se guarda sola y sobrevive a recargar)</label>
+          <textarea id="nota" rows="3"></textarea>
+        </div>
+        <button class="boton boton--secundario" id="btn-borrar-nota">Borrar nota</button>
+      </div>
+
+      <footer>
+        <p class="silencioso">
+          Siguiente: <a href="../05-js-async/index.html">05 — Asincronía y fetch</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="dom.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+/* ============================================================================
+   VARIABLES DE TEMA (CSS custom properties)
+   Cambian según el atributo data-theme que pone ThemeContext en <html>.
+   ============================================================================ */
+:root,
+[data-theme='light'] {
+  --bg: #f6f7fb;
+  --bg-elevated: #ffffff;
+  --text: #1a1d29;
+  --text-muted: #676b7e;
+  --border: #e2e4ec;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --warning: #d97706;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='dark'] {
+  --bg: #14151f;
+  --bg-elevated: #1e2030;
+  --text: #eef0f7;
+  --text-muted: #9296ab;
+  --border: #2c2e42;
+  --primary: #818cf8;
+  --primary-hover: #a5b0fc;
+  --success: #4ade80;
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+code, pre {
+  font-family: 'Fira Code', 'Consolas', monospace;
+}
